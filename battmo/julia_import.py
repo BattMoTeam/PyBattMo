@@ -34,4 +34,4 @@ jl = juliacall.newmodule("BattMo")
 import numpy as np
 
 # Load the main packages
-jl.seval("using BattMo, Jutul")
+jl.seval("using BattMo")
