@@ -1,6 +1,6 @@
 from .julia_import import jl
 
-def load_cell_parameter(*arg, **kwargs):
+def load_cell_parameters(*arg, **kwargs):
     return jl.load_cell_parameters(*arg, **kwargs)
 
 def load_cycling_protocol(*arg, **kwargs):
