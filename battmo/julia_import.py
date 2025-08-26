@@ -1,6 +1,7 @@
 import os
 import sys
 import warnings
+
 # The following code that handles juliacall issues is copied from PySR
 # Copyright 2020 Miles Cranmer, Apache 2.0 License.
 # Source: https://github.com/MilesCranmer/PySR/blob/cd055a67728eeb675c76dedfe5d5e669eea3a6d1/pysr/julia_import.py
@@ -30,8 +31,18 @@ else:
 # Actual start of module - now that juliacall can be imported
 import juliacall
 from juliacall import convert as jlconvert
+
 jl = juliacall.newmodule("BattMo")
 import numpy as np
 
 # Load the main packages
-jl.seval("using BattMo")
+try:
+    jl.seval("using BattMo")
+except Exception:
+    jl.seval(
+        """
+    import Pkg
+    Pkg.add(url="https://github.com/BattMoTeam/BattMo.jl")
+    using BattMo
+    """
+    )
