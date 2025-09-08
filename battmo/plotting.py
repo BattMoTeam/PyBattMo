@@ -25,19 +25,19 @@ def uninstall_plotting():
     return True
 
 
-def plot_dashboard(*arg, **kwargs):
-    if activate_plotting():
-        return jl.plot_dashboard(*arg, **kwargs)
+# def plot_dashboard(*arg, **kwargs):
+#     if activate_plotting():
+#         return jl.plot_dashboard(*arg, **kwargs)
 
 
-def plot_output(*arg, **kwargs):
-    if activate_plotting():
-        return jl.plot_output(*arg, **kwargs)
+# def plot_output(*arg, **kwargs):
+#     if activate_plotting():
+#         return jl.plot_output(*arg, **kwargs)
 
 
-def plot_interactive_3d(*arg, **kwargs):
-    if activate_plotting():
-        return jl.plot_interactive_3d(*arg, **kwargs)
+# def plot_interactive_3d(*arg, **kwargs):
+#     if activate_plotting():
+#         return jl.plot_interactive_3d(*arg, **kwargs)
 
 
 def make_interactive():
