@@ -27,7 +27,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pytest --cov=mathutils --cov-report=term-missing
+          pytest --cov=battmo --cov-report=term-missing
 
   release:
     name: Build and publish to PyPI
