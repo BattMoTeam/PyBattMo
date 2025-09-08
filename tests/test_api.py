@@ -13,10 +13,10 @@ def test_loading():
 
 def test_input_types():
 
-    cell_parameters = CellParameters(Dict())
-    cycling_protocol = CyclingProtocol(Dict())
-    model_settings = ModelSettings(Dict())
-    simulation_settings = SimulationSettings(Dict())
+    cell_parameters = CellParameters({})
+    cycling_protocol = CyclingProtocol({})
+    model_settings = ModelSettings({})
+    simulation_settings = SimulationSettings({})
 
 
 def test_simulation():
