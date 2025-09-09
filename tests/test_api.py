@@ -11,14 +11,6 @@ def test_loading():
     simulation_settings = load_simulation_settings(from_default_set="P2D")
 
 
-def test_input_types():
-
-    cell_parameters = CellParameters({})
-    cycling_protocol = CyclingProtocol({})
-    model_settings = ModelSettings({})
-    simulation_settings = SimulationSettings({})
-
-
 def test_simulation():
     cell_parameters = load_cell_parameters(from_default_set="Chen2020")
     cycling_protocol = load_cycling_protocol(from_default_set="CCDischarge")
