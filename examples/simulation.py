@@ -6,9 +6,14 @@ from battmo import (
     Simulation,
     solve,
     print_output_overview,
-    plot_dashboard,
+    plot_interactive_3d,
+    make_interactive,
+    install_plotting,
 )
 
+from ..battmo.julia_import import jl
+
+install_plotting()
 cell_parameters = load_cell_parameters(from_default_set="Chen2020")
 cycling_protocol = load_cycling_protocol(from_default_set="CCDischarge")
 model_setup = LithiumIonBattery()
@@ -18,5 +23,4 @@ output = solve(sim)
 print_output_overview(output)
 
 print(type(output))
-
-plot_dashboard(output, plot_type="contour")
+make_interactive()
