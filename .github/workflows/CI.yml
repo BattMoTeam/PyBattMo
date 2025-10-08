@@ -27,7 +27,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate test
-          pip install -e ./pybattmo
+          pip install -e .
 
       - name: Run tests with coverage
         shell: bash -l {0}
