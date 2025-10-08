@@ -20,7 +20,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: test
-          environment-file: ./pybattmo/environment.yml
+          environment-file: ./environment.yml
           auto-activate-base: false
 
       - name: Install your package
