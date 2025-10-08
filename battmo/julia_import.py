@@ -36,13 +36,38 @@ jl = juliacall.newmodule("BattMo")
 import numpy as np
 
 # Load the main packages
+
 try:
-    jl.seval("using BattMo")
-except Exception:
     jl.seval(
         """
-    import Pkg
-    Pkg.add(url="https://github.com/BattMoTeam/BattMo.jl")
-    using BattMo
+    using BattMo, 
+    using Jutul:Jutul,get_1d_interpolator 
+    using WGLMakie
     """
     )
+
+except Exception as e:
+    jl.seval(
+        """
+        import Pkg
+        Pkg.add("BattMo")
+        Pkg.add("Jutul")
+        Pkg.add("WGLMakie")
+        Pkg.instantiate()
+
+        using BattMo
+        using Jutul:Jutul,get_1d_interpolator 
+        """
+    )
+
+
+def update_battmo():
+
+    jl.seval(
+        """
+        import Pkg
+        Pkg.add("BattMo")  # ensures latest version
+    """
+    )
+    # Warn the user they may need to restart Python/Julia session
+    print("BattMo updated. Please restart your Python session to use the new version.")

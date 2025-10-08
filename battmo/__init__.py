@@ -1,7 +1,7 @@
-from .julia_import import jl
-from .input_handling import *
-from .output_handling import *
-from .models import *
-from .solving_problems import *
-from .utils import *
-from .plotting import *
+from .julia_import import jl, update_battmo
+from .api.input import *
+from .api.output import *
+from .api.models import *
+from .api.solve import *
+from .api.tools import *
+from .api.plotting import *

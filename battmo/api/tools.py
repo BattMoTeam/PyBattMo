@@ -1,4 +1,4 @@
-from .julia_import import jl
+from ..julia_import import jl
 
 
 def print_submodels_info(*arg, **kwargs):
@@ -21,9 +21,21 @@ def print_output_variable_info(*arg, **kwargs):
     return jl.print_output_variable_info(*arg, **kwargs)
 
 
+def print_output_overview(*arg, **kwargs):
+    return jl.print_output_overview(*arg, **kwargs)
+
+
 def generate_default_parameter_files(*arg, **kwargs):
     return jl.generate_default_parameter_files(*arg, **kwargs)
 
 
 def write_to_json_file(*arg, **kwargs):
     return jl.write_to_json_file(*arg, **kwargs)
+
+
+def print_cell_info(*arg, **kwargs):
+    return jl.print_cell_info(*arg, **kwargs)
+
+
+def plot_cell_curves(*arg, **kwargs):
+    return jl.plot_cell_curves(*arg, **kwargs)
