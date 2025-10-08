@@ -4,26 +4,19 @@ import pandas as pd
 import numpy as np
 from scipy.interpolate import interp1d
 
-# --- locate data dirs (similar to Julia code) ---
-battmo_base = os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-)
-exdata = os.path.join(battmo_base, "examples", "example_data")
-defaultdata = os.path.join(
-    battmo_base, "src", "input", "defaults", "cell_parameters", "data", "sodium_ion"
-)
-
 # --- load CSV files ---
-data_pe_ocp = pd.read_csv(os.path.join(defaultdata, "Chayambuka_pe_ocp.csv"), header=None)
-data_ne_ocp = pd.read_csv(os.path.join(defaultdata, "Chayambuka_ne_ocp.csv"), header=None)
-data_pe_D = pd.read_csv(os.path.join(defaultdata, "Chayambuka_pe_D.csv"), header=None)
-data_ne_D = pd.read_csv(os.path.join(defaultdata, "Chayambuka_ne_D.csv"), header=None)
-data_pe_k = pd.read_csv(os.path.join(defaultdata, "Chayambuka_pe_k.csv"), header=None)
-data_ne_k = pd.read_csv(os.path.join(defaultdata, "Chayambuka_ne_k.csv"), header=None)
+
+# This data has been extracted from the following papers: https://doi.org/10.1016/j.electacta.2021.139726, https://doi.org/10.1016/j.electacta.2021.139764
+data_pe_ocp = pd.read_csv(os.path.join("data", "Chayambuka_pe_ocp.csv"), header=None)
+data_ne_ocp = pd.read_csv(os.path.join("data", "Chayambuka_ne_ocp.csv"), header=None)
+data_pe_D = pd.read_csv(os.path.join("data", "Chayambuka_pe_D.csv"), header=None)
+data_ne_D = pd.read_csv(os.path.join("data", "Chayambuka_ne_D.csv"), header=None)
+data_pe_k = pd.read_csv(os.path.join("data", "Chayambuka_pe_k.csv"), header=None)
+data_ne_k = pd.read_csv(os.path.join("data", "Chayambuka_ne_k.csv"), header=None)
 data_elyte_cond = pd.read_csv(
-    os.path.join(defaultdata, "Chayambuka_elyte_conductivity.csv"), header=None
+    os.path.join("data", "Chayambuka_elyte_conductivity.csv"), header=None
 )
-data_elyte_diff = pd.read_csv(os.path.join(defaultdata, "Chayambuka_elyte_D.csv"), header=None)
+data_elyte_diff = pd.read_csv(os.path.join("data", "Chayambuka_elyte_D.csv"), header=None)
 
 # --- assign + scale ---
 pe_ocp = data_pe_ocp[1].to_numpy()
