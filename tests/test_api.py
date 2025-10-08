@@ -71,11 +71,13 @@ def test_utils():
 
 
 def test_calibration():
-    battmo_base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    exdata = os.path.join(battmo_base, "examples", "example_data")
+    base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     df_05 = pd.read_csv(
-        os.path.join(exdata, "Xu_2015_voltageCurve_05C.csv"), names=["Time", "Voltage"]
+        os.path.join(
+            base_path, os.path.join("examples", "input", "data", "Xu_2015_voltageCurve_05C.csv")
+        ),
+        names=["Time", "Voltage"],
     )
 
     cell_parameters = load_cell_parameters(from_default_set="Xu2015")
