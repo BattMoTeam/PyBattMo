@@ -69,5 +69,4 @@ def update_battmo():
         Pkg.add("BattMo")  # ensures latest version
     """
     )
-    # Warn the user they may need to restart Python/Julia session
-    print("BattMo updated. Please restart your Python session to use the new version.")
+    print("BattMo updated.")

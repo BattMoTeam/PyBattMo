@@ -5,7 +5,7 @@ on:
     branches: ["main"] # run tests on PRs
   push:
     tags:
-      - "pybattmo-v*" # only release on tags like v0.2.0
+      - "v*" # only release on tags like v0.2.0
 
 jobs:
   test:
@@ -14,8 +14,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: "1.11" # choose your Julia version
 
-      # Set up conda using your environment.yml
+      # Set up conda using environment.yml
       - name: Set up conda
         uses: conda-incubator/setup-miniconda@v3
         with:
@@ -23,7 +27,7 @@ jobs:
           environment-file: ./environment.yml
           auto-activate-base: false
 
-      - name: Install your package
+      - name: Install package
         shell: bash -l {0}
         run: |
           conda activate test
