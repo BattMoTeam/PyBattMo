@@ -1,5 +1,6 @@
 [![Documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://battmoteam.github.io/BattMo.jl/dev/manuals/pybattmo/installation)
 [![Build Status](https://github.com/battmoteam/BattMo.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/battmoteam/PyBattMo/actions/workflows/CI.yml?query=branch%3Amain)
+<a href="https://doi.org/10.5281/zenodo.17310497"><img src="https://zenodo.org/badge/1044330784.svg" alt="DOI"></a>
 
 # PyBattMo
 
