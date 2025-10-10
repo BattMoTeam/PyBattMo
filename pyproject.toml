@@ -114,13 +114,17 @@ classifiers = [
 # For an analysis of this field vs pip's requirements files see:
 # https://packaging.python.org/discussions/install-requires-vs-requirements/
 dependencies = [
-    "juliacall==0.9.27",
+    "juliacall>=0.9",
     "numpy>=1.13.0,<3.0.0",
-    "juliapkg>=0.1"
+    "juliapkg>=0.1",
+    "pandas>=2.3",
 ]
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["battmo*"]
+
 [tool.setuptools]
-packages = ["battmo"]
 include-package-data = false
 package-data = {battmo = ["juliapkg.json"]}
 license-files = ["LICENSE"]
