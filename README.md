@@ -1,10 +1,31 @@
-[![Documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://battmoteam.github.io/BattMo.jl/dev/manuals/pybattmo/installation)
-[![Build Status](https://github.com/battmoteam/BattMo.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/battmoteam/PyBattMo/actions/workflows/CI.yml?query=branch%3Amain)
-<a href="https://doi.org/10.5281/zenodo.17310497"><img src="https://zenodo.org/badge/1044330784.svg" alt="DOI"></a>
+
+[![Logo](https://github.com/BattMoTeam/visual-identity/blob/1bc87b07605d77fb3faa788c82f06ec2735ed31f/logos/battmo_logo_side.png)](https://github.com/BattMoTeam/BattMo.jl)
+
+---
+
+<p align="center">
+  <a href="https://battmoteam.github.io/BattMo.jl/dev/manuals/pybattmo/installation">
+    <img src="https://img.shields.io/badge/docs-dev-blue.svg" alt="Documentation">
+  </a>
+  <a href="https://github.com/battmoteam/PyBattMo/actions/workflows/CI.yml?query=branch%3Amain">
+    <img src="https://github.com/battmoteam/BattMo.jl/actions/workflows/CI.yml/badge.svg?branch=main" alt="Build Status">
+  </a>
+  <a href="https://doi.org/10.5281/zenodo.17310497">
+    <img src="https://zenodo.org/badge/1044330784.svg" alt="DOI">
+  </a>
+</p>
 
 # PyBattMo
 
-**PyBattMo** is a Python wrapper around the Julia-based [BattMo.jl](https://github.com/BattMoTeam/BattMo.jl).
+**PyBattMo** is a Python wrapper around the Julia-based [BattMo.jl](https://github.com/BattMoTeam/BattMo.jl). The Battery Modelling Toolbox (**BattMo**) is a resource for continuum modelling of electrochemical devices in MATLAB. The initial development features a pseudo X-dimensional (PXD) framework for the Doyle-Fuller-Newman model of lithium-ion battery cells. This is currently a early release that implements a subset of features from the [MATLAB version of BattMo](https://github.com/BattMoTeam/BattMo).
+
+## BattMo Family
+BattMo can be used through several interfaces:
+
+- [MATLAB](https://github.com/BattMoTeam/BattMo)
+- [Julia](https://github.com/BattMoTeam/BattMo.jl)
+- [Python](https://github.com/BattMoTeam/PyBattMo)
+- [Web app](https://app.batterymodel.com/)
 
 ## Installation
 
@@ -85,3 +106,12 @@ plot_interactive_3d(output)
 ## Documentation
 
 Some additional examples are be found in the [BattMo.jl documentation](https://battmoteam.github.io/BattMo.jl/dev/pybattmo/installation) as well as a comprehensive documentation on the API and architecture of BattMo.jl.
+
+## Acknowledgements
+
+BattMo has received funding from the European Union’s Horizon 2020 innovation program under grant agreement numbers:
+
+- 875527 HYDRA
+- 957189 BIG-MAP
+- 101104013 BATMAX
+- 101103997 DigiBatt
