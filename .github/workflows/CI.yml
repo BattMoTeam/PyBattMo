@@ -17,7 +17,7 @@ jobs:
       - name: Set up Julia
         uses: julia-actions/setup-julia@v1
         with:
-          version: "1.11" # choose your Julia version
+          version: "1.12" # choose your Julia version
 
       # Set up conda using environment.yml
       - name: Set up conda
