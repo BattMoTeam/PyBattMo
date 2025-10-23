@@ -19,9 +19,5 @@ def free_calibration_parameter(cal, parameter_path, **kwargs):
     return julia_func(cal, parameter_path_jl, **kwargs)
 
 
-def print_calibration_overview(*arg, **kwargs):
-    return jl.print_calibration_overview(*arg, **kwargs)
-
-
 def run_simulation(*arg, **kwargs):
     return jl.run_simulation(*arg, **kwargs)

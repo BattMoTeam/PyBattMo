@@ -11,23 +11,24 @@ from examples.input.chayambuka_functions import *
 
 def test_loading():
 
-    cell_parameters = load_cell_parameters(from_default_set="Chen2020")
-    cycling_protocol = load_cycling_protocol(from_default_set="CCDischarge")
-    model_settings = load_model_settings(from_default_set="P2D")
-    simulation_settings = load_simulation_settings(from_default_set="P2D")
+    cell_parameters = load_cell_parameters(from_default_set="chen_2020")
+    cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
+    model_settings = load_model_settings(from_default_set="p2d")
+    simulation_settings = load_simulation_settings(from_default_set="p2d")
     solver_settings = load_solver_settings(from_default_set="direct")
+    full = load_full_simulation_input(from_default_set="chen_2020")
 
 
 def test_simulation():
-    cell_parameters = load_cell_parameters(from_default_set="Chen2020")
-    cycling_protocol = load_cycling_protocol(from_default_set="CCDischarge")
+    cell_parameters = load_cell_parameters(from_default_set="chen_2020")
+    cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
 
     model_setup = LithiumIonBattery()
     sim = Simulation(model_setup, cell_parameters, cycling_protocol)
     output = solve(sim)
 
-    cell_parameters = load_cell_parameters(from_default_set="Chayambuka2022")
-    model_settings = load_model_settings(from_default_set="P2D")
+    cell_parameters = load_cell_parameters(from_default_set="chayambuka_2022")
+    model_settings = load_model_settings(from_default_set="p2d")
     model_settings["ButlerVolmer"] = "Chayambuka"
 
     model_setup = SodiumIonBattery(model_settings=model_settings)
@@ -36,8 +37,8 @@ def test_simulation():
 
 
 def test_output_handling():
-    cell_parameters = load_cell_parameters(from_default_set="Chen2020")
-    cycling_protocol = load_cycling_protocol(from_default_set="CCDischarge")
+    cell_parameters = load_cell_parameters(from_default_set="chen_2020")
+    cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
     model_setup = LithiumIonBattery()
     sim = Simulation(model_setup, cell_parameters, cycling_protocol)
     output = solve(sim)
@@ -45,7 +46,7 @@ def test_output_handling():
     ts = output.time_series
     states = output.states
     metrics = output.metrics
-    print_output_overview(output)
+    print_info(output)
 
 
 # def test_plotting():
@@ -58,14 +59,14 @@ def test_output_handling():
 
 
 def test_utils():
-    print_submodels_info()
-    print_default_input_sets_info()
-    print_parameter_info("Electrode")
-    print_setting_info("Grid")
-    print_output_variable_info("Concentration")
+    print_submodels()
+    print_default_input_sets()
+    print_info("Electrode")
+    print_info("Grid")
+    print_info("Concentration", view="OutputVariable")
 
-    cell_parameters = load_cell_parameters(from_default_set="Chen2020")
-    print_cell_info(cell_parameters)
+    cell_parameters = load_cell_parameters(from_default_set="chen_2020")
+    quick_cell_check(cell_parameters)
 
     # plot_cell_curves(cell_parameters)
 
@@ -80,8 +81,8 @@ def test_calibration():
         names=["Time", "Voltage"],
     )
 
-    cell_parameters = load_cell_parameters(from_default_set="Xu2015")
-    cycling_protocol = load_cycling_protocol(from_default_set="CCDischarge")
+    cell_parameters = load_cell_parameters(from_default_set="xu_2015")
+    cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
 
     cycling_protocol["LowerVoltageLimit"] = 2.25
     cycling_protocol["DRate"] = 0.5
@@ -148,9 +149,9 @@ def test_calibration():
 
 def test_user_defined_function():
 
-    cell_parameters = load_cell_parameters(from_default_set="Chayambuka2022")
-    cycling_protocol = load_cycling_protocol(from_default_set="CCDischarge")
-    model_settings = load_model_settings(from_default_set="P2D")
+    cell_parameters = load_cell_parameters(from_default_set="chayambuka_2022")
+    cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
+    model_settings = load_model_settings(from_default_set="p2d")
     model_settings["ButlerVolmer"] = "Chayambuka"
 
     model_setup = SodiumIonBattery(model_settings=model_settings)
