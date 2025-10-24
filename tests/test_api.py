@@ -149,6 +149,21 @@ def test_calibration():
 
 def test_user_defined_function():
 
+    import os
+    import sys
+
+    # Get the directory of the current file
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    # Define the relative path you want to add
+    relative_path = os.path.join(root_dir, 'examples')
+
+    # Add it to the system path
+    sys.path.append(relative_path)
+
+    # Import chayambuka input functions
+    import input.chayambuka_functions
+
     cell_parameters = load_cell_parameters(from_default_set="chayambuka_2022")
     cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
     model_settings = load_model_settings(from_default_set="p2d")
