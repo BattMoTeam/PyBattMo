@@ -53,8 +53,8 @@ import numpy as np
 model = LithiumIonBattery()
 
 # Load cell parameters and cycling protocol
-cell_parameters = load_cell_parameters(from_default_set = "Chen2020")
-cycling_protocol = load_cycling_protocol(from_default_set = "CCDischarge")
+cell_parameters = load_cell_parameters(from_default_set = "chen_2020")
+cycling_protocol = load_cycling_protocol(from_default_set = "cc_discharge")
 
 # Have a quick look into what kind of cell we're dealing with
 quick_cell_check(cell_parameters)
@@ -84,13 +84,23 @@ plot_dashboard(output, plot_type="contour")
 from battmo import *
 
 # Load parameter sets and settings
-cell_parameters = load_cell_parameters(from_default_set="Chen2020")
-cycling_protocol = load_cycling_protocol(from_default_set="CCDischarge")
-model_settings = load_model_settings(from_default_set="P4D_cylindrical")
+cell_parameters = load_cell_parameters(from_default_set="chen_2020")
+cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
+model_settings = load_model_settings(from_default_set="p4d_cylindrical")
+simulation_settings = load_model_settings(from_default_set="p4d_cylindrical")
+
+# We adjust the parameters so that the simulation in this example is not too long
+
+cell_parameters["Cell"]["OuterRadius"]                                   = 0.004
+cell_parameters["NegativeElectrode"]["CurrentCollector"]["TabFractions"] = [0.5]
+cell_parameters["PositiveElectrode"]["CurrentCollector"]["TabFractions"] = [0.5]
+cell_parameters["NegativeElectrode"]["CurrentCollector"]["TabWidth"]     = 0.002
+cell_parameters["PositiveElectrode"]["CurrentCollector"]["TabWidth"]     = 0.002
+simulation_settings["AngularGridPoints"]                                 = 8
 
 # Setup model and simulation
 model = LithiumIonBattery(model_settings=model_settings)
-sim = Simulation(model, cell_parameters, cycling_protocol)
+sim = Simulation(model, cell_parameters, cycling_protocol, simulation_settings = simulation_settings)
 output = solve(sim)
 
 # Plot interative 3D results
