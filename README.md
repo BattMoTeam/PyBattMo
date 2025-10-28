@@ -1,6 +1,3 @@
-[![Documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://battmoteam.github.io/BattMo.jl/dev/)
-[![Build Status](https://github.com/battmoteam/BattMo.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/battmoteam/PyBattMo/actions/workflows/CI.yml?query=branch%3Amain)
-
 # PyBattMo
 
 **PyBattMo** is a Python wrapper around the Julia-based [BattMo.jl](https://github.com/BattMoTeam/BattMo.jl).
@@ -34,22 +31,17 @@ model = LithiumIonBattery()
 cell_parameters = load_cell_parameters(from_default_set = "Chen2020")
 cycling_protocol = load_cycling_protocol(from_default_set = "CCDischarge")
 
+# Have a quick look into what kind of cell we're dealing with
+quick_cell_check(cell_parameters)
+
 # Set up the simulation
 sim = Simulation(model, cell_parameters, cycling_protocol)
 
 # Run the simulation
 output = solve(sim)
 
-# Have a quick look into what kind of cell we're dealing with
-print_cell_info(cell_parameters)
-
-# Setup model and simulation
-model = LithiumIonBattery()
-sim = Simulation(model, cell_parameters, cycling_protocol)
-output = solve(sim)
-
 # Have a look into which output quantities are available
-print_output_overview(output)
+print_info(output)
 
 # Plotting using Plotly
 df = to_pandas(output.time_series)
@@ -57,7 +49,6 @@ fig = px.line(df, x="Time", y="Voltage", title="Voltage curve")
 fig.show()
 
 # Use BattMo internal plotting functions
-install_plotting()
 plot_dashboard(output, plot_type="contour")
 
 ```
@@ -74,7 +65,7 @@ model_settings = load_model_settings(from_default_set="P4D_cylindrical")
 
 # Setup model and simulation
 model = LithiumIonBattery(model_settings=model_settings)
-sim = Simulation(model, cell_parameters, cycling_protocol, simulation_settings=simulation_settings)
+sim = Simulation(model, cell_parameters, cycling_protocol)
 output = solve(sim)
 
 # Plot interative 3D results
