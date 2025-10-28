@@ -10,13 +10,13 @@ import os
 
 # Load experimental data
 battmo_base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-exdata = os.path.join(battmo_base, "examples", "example_data")
+exdata = os.path.join("examples", "input", "data")
 
 df_05 = pd.read_csv(os.path.join(exdata, "Xu_2015_voltageCurve_05C.csv"), names=["Time", "Voltage"])
 
 # ## Load cell parameters and cycling protocol
-cell_parameters = load_cell_parameters(from_default_set="Xu2015")
-cycling_protocol = load_cycling_protocol(from_default_set="CCDischarge")
+cell_parameters = load_cell_parameters(from_default_set="xu_2015")
+cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
 
 cycling_protocol["LowerVoltageLimit"] = 2.25
 
@@ -84,14 +84,14 @@ free_calibration_parameter(
 )
 
 # print an overview of the calibration object
-print_calibration_overview(cal)
+print_info(cal)
 
 # Solve the calibration problem
 solve(cal)
 
 # Retrieve the calibrated parameters and print an overview of the calibration
 cell_parameters_calibrated = cal.calibrated_cell_parameters
-print_calibration_overview(cal)
+print_info(cal)
 
 # Run a simulation using the calibrated cell parameters
 sim_calibrated = Simulation(model, cell_parameters_calibrated, cycling_protocol)

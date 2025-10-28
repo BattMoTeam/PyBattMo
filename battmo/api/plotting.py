@@ -33,19 +33,18 @@ def make_interactive():
 def plot_dashboard(output, plot_type="simple"):
     if activate_plotting():
         fig = jl.plot_dashboard(output, plot_type=plot_type)
-        make_interactive()
+
         if plot_type == "line":
             jl.seval(
                 """
-                    display(current_figure())
                     println("Press Ctrl+C to stop plotting interactivity")
                     while true
                         sleep(0.1)
                     end
                     """
             )
-        else:
-            jl.seval("display(current_figure())")
+
+        make_interactive()
 
     return fig
 
@@ -64,7 +63,6 @@ def plot_interactive_3d(*arg, **kwargs):
         make_interactive()
         jl.seval(
             """
-                display(current_figure())
                 println("Press Ctrl+C to stop plotting interactivity")
                 while true
                     sleep(0.1)

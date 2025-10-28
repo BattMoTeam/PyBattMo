@@ -47,6 +47,7 @@ try:
     )
 
 except Exception as e:
+
     jl.seval(
         """
         import Pkg
@@ -57,6 +58,7 @@ except Exception as e:
 
         using BattMo
         using Jutul:Jutul,get_1d_interpolator 
+        using WGLMakie
         """
     )
 

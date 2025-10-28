@@ -42,6 +42,10 @@ def SimulationSettings(*arg, **kwargs):
     return jl.SimulationSettings(*arg, **kwargs)
 
 
+def FullSimulationInput(*arg, **kwargs):
+    return jl.SimulationSettings(*arg, **kwargs)
+
+
 def expose_to_battmo(func):
     name = func.__name__
     setattr(jl_main, name, func)  # register Python function in Main
