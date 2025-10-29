@@ -29,7 +29,7 @@ BattMo can be used through several interfaces:
 
 ## Installation
 
-In addition to Python, Julia needs to be installed. Visit the [Julia website](https://julialang.org/install/) for more information on how to install Julia. To install PyBattMo, use the following pip command:
+To install PyBattMo, use the following pip command:
 
 ```bash
 pip install battmo
