@@ -16,7 +16,7 @@
 
 # PyBattMo
 
-**PyBattMo** is a Python wrapper around the Julia-based [BattMo.jl](https://github.com/BattMoTeam/BattMo.jl). The Battery Modelling Toolbox (**BattMo**) is a resource for continuum modelling of electrochemical devices in MATLAB. The initial development features a pseudo X-dimensional (PXD) framework for the Doyle-Fuller-Newman model of lithium-ion battery cells. This is currently a early release that implements a subset of features from the [MATLAB version of BattMo](https://github.com/BattMoTeam/BattMo).
+**PyBattMo** is a Python wrapper around the Julia-based [BattMo.jl](https://github.com/BattMoTeam/BattMo.jl). The Battery Modelling Toolbox (**BattMo**) is a resource for continuum modelling of electrochemical devices. The initial development features a pseudo X-dimensional (PXD) framework for the Doyle-Fuller-Newman model of lithium-ion battery cells. This is currently a early release that implements a subset of features from the [MATLAB version of BattMo](https://github.com/BattMoTeam/BattMo).
 
 ## BattMo Family
 
