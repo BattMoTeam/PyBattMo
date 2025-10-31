@@ -40,6 +40,8 @@ pip install battmo
 Run examples using our internal library, for example the cell parameters from [Chen et al.](https://doi.org/10.1149/1945-7111/ab9050)
 
 > **Important tip:** run the examples within a notebook or using [cells in VSCode](https://code.visualstudio.com/docs/python/jupyter-support-py) to make use of the high performance of Julia. Julia compiles the functions and objects that you use when you first run a code. Because of this, the second time you run the same code it is super fast! But to make use of this, you need to have a kernel that keeps running in between code executions. Therefore, it does work with jupytor notebooks.
+>
+> **Note** the BattMo plotting functions in PyBattMo are experimental and not very stable yet.
 
 ### P2D example
 
