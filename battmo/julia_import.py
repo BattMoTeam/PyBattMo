@@ -40,9 +40,7 @@ import numpy as np
 try:
     jl.seval(
         """
-    using BattMo, 
-    using Jutul:Jutul,get_1d_interpolator 
-    using WGLMakie
+    using BattMo, Jutul
     """
     )
 
@@ -53,12 +51,9 @@ except Exception as e:
         import Pkg
         Pkg.add("BattMo")
         Pkg.add("Jutul")
-        Pkg.add("WGLMakie")
         Pkg.instantiate()
 
-        using BattMo
-        using Jutul:Jutul,get_1d_interpolator 
-        using WGLMakie
+        using BattMo, Jutul
         """
     )
 
