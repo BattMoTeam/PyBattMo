@@ -36,11 +36,11 @@ jobs:
           conda activate test
           pip install -e .
 
-      - name: Run tests with coverage
+      - name: Run tests with xvfb
         shell: bash -l {0}
         run: |
           conda activate test
-          pytest --cov=battmo --cov-report=term-missing
+          xvfb-run -s "-screen 0 1024x768x24" pytest --cov=battmo --cov-report=term-missing
 
   release:
     name: Build and publish to PyPI
