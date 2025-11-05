@@ -1,27 +1,31 @@
 import juliapkg
 from ..julia_import import jl
 import juliacall
+import time
+import asyncio
 
 
 def activate_plotting():
     try:
-        jl.seval("using WGLMakie; WGLMakie.activate!()")
+        jl.seval("using GLMakie; GLMakie.activate!()")
+
     except:
-        print("Unable to load WGLMakie. Have you called install_plotting()?")
+
+        print("Unable to load GLMakie. Have you called install_plotting()?")
 
         return False
     return True
 
 
 def install_plotting():
-    juliapkg.add("WGLMakie", "276b4fcb-3e11-5398-bf8b-a0c2d153d008")
+    juliapkg.add("GLMakie", "e9467ef8-e4e7-5192-8a1a-b1aee30e663a")
     juliapkg.resolve()
     activate_plotting()
     return True
 
 
 def uninstall_plotting():
-    juliapkg.rm("WGLMakie", "276b4fcb-3e11-5398-bf8b-a0c2d153d008")
+    juliapkg.rm("GLMakie", "e9467ef8-e4e7-5192-8a1a-b1aee30e663a")
     juliapkg.resolve()
     return True
 
@@ -30,43 +34,61 @@ def make_interactive():
     juliacall.interactive()
 
 
-def plot_dashboard(output, plot_type="simple"):
+async def keep_plot_dashboard_alive(*arg, **kwargs):
+    fig = jl.plot_dashboard(*arg, **kwargs)
+    while True:
+        jl.seval("yield()")
+        await asyncio.sleep(0.1)
+
+
+def plot_dashboard(*arg, **kwargs):
+
     if activate_plotting():
-        fig = jl.plot_dashboard(output, plot_type=plot_type)
 
-        if plot_type == "line":
-            jl.seval(
-                """
-                    println("Press Ctrl+C to stop plotting interactivity")
-                    while true
-                        sleep(0.1)
-                    end
-                    """
-            )
+        loop = asyncio.get_event_loop()
 
-        make_interactive()
+        if loop.is_running():
+            # Notebook or already running loop
+            loop.create_task(keep_plot_dashboard_alive(*arg, **kwargs))
+        else:
+            # Script or no loop running - start a loop
+            asyncio.run(keep_plot_dashboard_alive(*arg, **kwargs))
 
-    return fig
+
+async def keep_plot_output_alive(*arg, **kwargs):
+    fig = jl.plot_output(*arg, **kwargs)
+    while True:
+        jl.seval("yield()")
+        await asyncio.sleep(0.1)
 
 
 def plot_output(*arg, **kwargs):
     if activate_plotting():
-        fig = jl.plot_output(*arg, **kwargs)
-        make_interactive()
-        jl.seval("display(current_figure())")
-    return fig
+        try:
+            loop = asyncio.get_event_loop()
+            # Notebook or already running loop
+            loop.create_task(keep_plot_output_alive(*arg, **kwargs))
+
+        except RuntimeError:
+            # Script: no loop running, so start one
+            asyncio.run(keep_plot_output_alive(*arg, **kwargs))
+
+
+async def keep_plot_interactive_3d_alive(*arg, **kwargs):
+    fig = jl.plot_interactive_3d(*arg, **kwargs)
+    while True:
+        jl.seval("yield()")
+        await asyncio.sleep(0.1)
 
 
 def plot_interactive_3d(*arg, **kwargs):
     if activate_plotting():
-        fig = jl.plot_interactive_3d(*arg, **kwargs)
-        make_interactive()
-        jl.seval(
-            """
-                println("Press Ctrl+C to stop plotting interactivity")
-                while true
-                    sleep(0.1)
-                end
-                """
-        )
-    return fig
+        try:
+            loop = asyncio.get_event_loop()
+            # Notebook or already running loop
+            loop.create_task(keep_plot_interactive_3d_alive(*arg, **kwargs))
+
+        except RuntimeError:
+
+            # Script: no loop running, so start one
+            asyncio.run(keep_plot_interactive_3d_alive(*arg, **kwargs))

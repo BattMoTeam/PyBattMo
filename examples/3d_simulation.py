@@ -1,8 +1,8 @@
-# Partial port of https://battmoteam.github.io/BattMo.jl/dev/tutorials/2_run_a_simulation
+# %%
 from battmo import *
 import plotly.express as px
 
-# Load parameter sets
+# %% Load parameter sets
 cell_parameters = load_cell_parameters(from_default_set="chen_2020")
 cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
 model_settings = load_model_settings(from_default_set="p4d_cylindrical")
@@ -13,10 +13,12 @@ cell_parameters["NegativeElectrode"]["CurrentCollector"]["TabWidth"] = 0.002
 cell_parameters["PositiveElectrode"]["CurrentCollector"]["TabWidth"] = 0.002
 simulation_settings["AngularGridPoints"] = 8
 
-# Setup model and simulation
+# %% Setup model and simulation
 model = LithiumIonBattery(model_settings=model_settings)
 sim = Simulation(model, cell_parameters, cycling_protocol, simulation_settings=simulation_settings)
 output = solve(sim)
 
-# Plot interative 3D results
+# %% Plot interative 3D results
 plot_interactive_3d(output)
+
+# %%
