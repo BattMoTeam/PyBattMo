@@ -23,6 +23,9 @@ def test_simulation():
     cell_parameters = load_cell_parameters(from_default_set="chen_2020")
     cycling_protocol = load_cycling_protocol(from_default_set="cc_discharge")
 
+    print_info(cell_parameters, view="NegativeElectrode")
+    print_info(cell_parameters, view="Electrode")
+
     model_setup = LithiumIonBattery()
     sim = Simulation(model_setup, cell_parameters, cycling_protocol)
     output = solve(sim)
@@ -96,6 +99,7 @@ def test_calibration():
 
     cal = VoltageCalibration(np.array(df_05["Time"]), np.array(df_05["Voltage"]), sim)
 
+    print_info(cal)
     free_calibration_parameter(
         cal,
         ["NegativeElectrode", "ActiveMaterial", "StoichiometricCoefficientAtSOC100"],
